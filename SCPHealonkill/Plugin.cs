@@ -18,12 +18,16 @@ namespace SCPHealonkill
         {
             Instance = this;
             _eventHandlers = new EventHandlers(this);
+
+            Exiled.Events.Handlers.Player.Died += _eventHandlers.OnPlayerDied;
             
             base.OnEnabled();
         }
 
         public override void OnDisabled()
         {
+            
+            Exiled.Events.Handlers.Player.Died -= _eventHandlers.OnPlayerDied;
             
             _eventHandlers = null;
             Instance = null;
